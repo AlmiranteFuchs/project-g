@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bi10ek0ttqw6o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5tent"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txhyd"]
+
+[sub_resource type="Environment" id="Environment_4xiex"]
+background_mode = 2
+ambient_light_energy = 3.45
+ssr_enabled = true
+ssao_enabled = true
+glow_enabled = true
+fog_enabled = true
+volumetric_fog_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_nt283"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tu7kl"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+use_collision = true
+mesh = SubResource("BoxMesh_5tent")
+material = SubResource("StandardMaterial3D_txhyd")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999982, -0.00594411, 0.000544844, 0.00501921, 0.886752, 0.462217, -0.00323061, -0.462206, 0.886766, 0.829022, 5.85294, 4.29588)
+environment = SubResource("Environment_4xiex")
+attributes = SubResource("CameraAttributesPractical_nt283")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.21251, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74913, 0)
+shape = SubResource("CapsuleShape3D_tu7kl")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69968, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.8143, 0, 0)
