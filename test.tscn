@@ -34,14 +34,14 @@ transform = Transform3D(-0.307663, -0.874533, -0.374882, 0.943327, -0.331865, 0,
 light_energy = 2.48
 light_angular_distance = 64.6
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="Player" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.88027, 0)
 physics_material_override = SubResource("PhysicsMaterial_v7aee")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_4qsg1")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_1fqww")
 skeleton = NodePath("../..")
 

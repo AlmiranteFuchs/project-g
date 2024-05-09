@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://5kngw8jt2gj8"]
+
+[resource]
+resource_name = "SAS_body.bmp"
+albedo_color = Color(1, 1, 1, 1)
+metallic = 0.4
+roughness = 0.272166
