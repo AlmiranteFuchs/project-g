@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhjx8fsloh2a3"]
+[gd_scene load_steps=13 format=3 uid="uid://bhjx8fsloh2a3"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/player_controller_3d.gd" id="1_j6fcj"]
 [ext_resource type="Texture2D" uid="uid://c2ksuxmvgwel6" path="res://icon.svg" id="2_pcfyl"]
+[ext_resource type="PackedScene" uid="uid://d0artxrcckawd" path="res://Assets/Resources/World/Characters/major_armored_shell_prototype_funnyhands.fbx" id="3_seri3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pnfj5"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -35,7 +36,9 @@ environment = SubResource("Environment_e5owq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.870356, -0.492424, -2.15245e-08, 0, -4.37114e-08, 1, -0.492424, 0.870356, 3.80445e-08, 0, 0, 0)
+light_color = Color(0.810291, 0.690427, 0.478256, 1)
 light_energy = 0.351
+light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
@@ -64,8 +67,11 @@ transform = Transform3D(310.775, 0, 0, 0, 0.781437, 0, 0, 0, 679.897, 0, -0.1028
 material_override = SubResource("StandardMaterial3D_7nsnh")
 mesh = SubResource("BoxMesh_8n8l4")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.69601, 1.28315, 5.52814)
+[node name="test_wall" type="CSGBox3D" parent="."]
+transform = Transform3D(1.00709, 0, 0, 0, 6.83506, 0, 0, 0, 50.8472, -10.5627, 3.67326, 5.52814)
 use_collision = true
+
+[node name="Root Scene" parent="." instance=ExtResource("3_seri3")]
+transform = Transform3D(0.027, 0, 0, 0, 0.021, 0, 0, 0, 0.027, -5.81663, 0.381831, 2.7604)
 
 [connection signal="input_event" from="CharacterBody3D" to="CharacterBody3D" method="_on_input_event"]
