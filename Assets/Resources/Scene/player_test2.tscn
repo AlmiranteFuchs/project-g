@@ -55,6 +55,7 @@ mesh = SubResource("CapsuleMesh_e5csa")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.737221, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/p_head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.255451, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_6d2nw")
