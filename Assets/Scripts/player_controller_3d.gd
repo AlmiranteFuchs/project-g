@@ -104,11 +104,11 @@ func wall_ray_cast():
 				
 				break
 
-var started_climbing = false
+
 func climb_wall():
-	# If not on wall
-	if not is_on_wall():
-		return
+	# If not on wall, unreliable
+	# if not is_on_wall():
+	# 	return
 	var space = get_world_3d().direct_space_state
 
 	# TODO: Save collisions points in a array, reverse it, if collided with the wall, take the first point and compare the z of the next, while it is the same do nothing
