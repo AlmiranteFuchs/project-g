@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=800
 window/size/viewport_height=600
+window/size/initial_position_type=4
+
+[editor]
+
+movie_writer/movie_file="/home/efi/Documentos/aqui/movies.avi"
 
 [input]
 
@@ -65,4 +70,3 @@ ui_character_mouse_1={
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
