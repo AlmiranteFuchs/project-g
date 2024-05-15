@@ -6,12 +6,12 @@
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_s545c"]
+[sub_resource type="Sky" id="Sky_ttfw2"]
 sky_material = SubResource("ProceduralSkyMaterial_pnfj5")
 
 [sub_resource type="Environment" id="Environment_e5owq"]
 background_mode = 2
-sky = SubResource("Sky_s545c")
+sky = SubResource("Sky_ttfw2")
 tonemap_mode = 2
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e5csa"]

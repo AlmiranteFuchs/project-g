@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://q53ldg05rlt8"]
+[gd_scene load_steps=11 format=3 uid="uid://q53ldg05rlt8"]
 
+[ext_resource type="PackedScene" uid="uid://x6eqn370ogam" path="res://gun.tscn" id="1_rq32x"]
 [ext_resource type="Texture2D" uid="uid://c2ksuxmvgwel6" path="res://icon.svg" id="1_sh8uf"]
 
 [sub_resource type="Sky" id="Sky_fa7v4"]
@@ -44,6 +45,8 @@ shape = SubResource("CapsuleShape3D_4qsg1")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_1fqww")
 skeleton = NodePath("../..")
+
+[node name="gun" parent="Player" instance=ExtResource("1_rq32x")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

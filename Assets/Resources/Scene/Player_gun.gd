@@ -2,12 +2,13 @@ extends CharacterBody3D
 
 ##### References #####
 
-@onready var camera_3d = $p_head/Camera3D
+@onready var camera_3d = $p_head2/Camera3D
 @onready var character_body_3d = $"."
-@onready var p_head = $p_head
-@onready var collision_shape_3d = $CollisionShape3D
-@onready var p_chest = $p_chest
-@onready var p_legs = $p_legs
+@onready var p_head = $p_head2
+@onready var collision_shape_3d = $CollisionShape3D2
+@onready var p_chest = $p_chest2
+@onready var p_legs = $p_legs2
+@onready var m_16 = $p_head2/Camera3D/M16/AnimationPlayer
 
 
 
@@ -31,6 +32,9 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) # Change this in the future
 
 func _physics_process(delta):
+	if Input.is_action_pressed("shoot"):
+		if !m_16.is_playing():
+			m_16.play("Shoot")
 	manage_movement(delta)
 	#wall_ray_cast()
 	climb_wall()
