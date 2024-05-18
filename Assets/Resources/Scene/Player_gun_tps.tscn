@@ -24,7 +24,7 @@ shape = SubResource("ConvexPolygonShape3D_niueq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66625, 0)
 
 [node name="Camera3D" type="Camera3D" parent="p_head2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0159197, 0.255451, -0.0354366)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.993454, 0.558295, 3.03047)
 fov = 70.0
 
 [node name="M16" parent="p_head2/Camera3D" instance=ExtResource("2_wwwyn")]

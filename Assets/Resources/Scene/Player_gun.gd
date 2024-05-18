@@ -52,6 +52,15 @@ func _input(event):
 	
 ###### Custom Functions #####
 func manage_movement(delta):
+	# Get the input direction and handle the movement/deceleration.
+	var input_dir = Input.get_vector("ui_character_movement_left", "ui_character_movement_right", "ui_character_movement_forward", "ui_character_movement_back")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -60,15 +69,7 @@ func manage_movement(delta):
 		if Input.is_action_just_pressed("ui_character_movement_up") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
 
-		# Get the input direction and handle the movement/deceleration.
-		var input_dir = Input.get_vector("ui_character_movement_left", "ui_character_movement_right", "ui_character_movement_forward", "ui_character_movement_back")
-		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		if direction:
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.z = move_toward(velocity.z, 0, SPEED)
+	
 
 func wall_ray_cast():
 	var space = get_world_3d().direct_space_state
@@ -112,12 +113,18 @@ func wall_ray_cast():
 				
 				break
 
+func teleport_player(nova_pos: Vector3):
+	global_transform.origin = nova_pos
+
+
 
 func climb_wall():
 	# If not on wall, unreliable
 	# if not is_on_wall():
 	# 	return
 	var space = get_world_3d().direct_space_state
+	print(space)
+
 
 	# TODO: Save collisions points in a array, reverse it, if collided with the wall, take the first point and compare the z of the next, while it is the same do nothing
 	# If it changes, probably the point it's above the wall, where the player needs to climb, 
@@ -134,8 +141,13 @@ func climb_wall():
 
 		var ray_parameters = PhysicsRayQueryParameters3D.create(starting_pos, ending_end)
 		var collision = space.intersect_ray(ray_parameters)
+		if Input.is_action_just_pressed("teleporte"):
+			teleport_player(ending_end)
+		
 
 		line(starting_pos, ending_end, Color.RED, 1)
+		
+	
 
 	return ;
 	# # If not on wall

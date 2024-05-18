@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cbuwmo08sqbid"]
 
-[ext_resource type="PackedScene" uid="uid://b4xk7xxtdwrcf" path="res://Assets/Resources/Scene/Player_gun.tscn" id="1_xaleg"]
+[ext_resource type="PackedScene" uid="uid://b4xk7xxtdwrcf" path="res://Assets/Resources/Scene/Player_gun_tps.tscn" id="1_xaleg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fyoi8"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
