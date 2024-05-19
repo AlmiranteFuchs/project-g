@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b547qjke72088"]
 
-[ext_resource type="Script" path="res://Assets/Resources/Scene/Player_gun.gd" id="1_siuad"]
+[ext_resource type="Script" path="res://Assets/Scripts/Player_gun.gd" id="1_siuad"]
 [ext_resource type="PackedScene" uid="uid://byolkaspshoo7" path="res://Assets/Weapons/M16.tscn" id="2_c7kvv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mn4mv"]
@@ -35,5 +35,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3109, 0)
 
 [node name="p_legs2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.355619, 0)
+
+[node name="ray1" type="RayCast3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 2.59664, 0)
+collide_with_areas = true
+
+[node name="ray2" type="RayCast3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 1.99697, 0)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

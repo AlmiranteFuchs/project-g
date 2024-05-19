@@ -9,6 +9,8 @@ extends CharacterBody3D
 @onready var p_chest = $p_chest2
 @onready var p_legs = $p_legs2
 @onready var m_16 = $p_head2/Camera3D/M16/AnimationPlayer
+@onready var ray_1 = $ray1
+@onready var ray_2 = $ray2
 
 
 
@@ -141,6 +143,7 @@ func climb_wall():
 
 		var ray_parameters = PhysicsRayQueryParameters3D.create(starting_pos, ending_end)
 		var collision = space.intersect_ray(ray_parameters)
+
 		if Input.is_action_just_pressed("teleporte"):
 			teleport_player(ending_end)
 		

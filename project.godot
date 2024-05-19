@@ -15,6 +15,10 @@ run/main_scene="res://Assets/Resources/Scene/teste_cena_p_gun.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DrawLine3d="*res://Assets/Scripts/Godot-3D-Lines-master/Godot-3D-Lines-master/DrawLine3D.gd"
+
 [display]
 
 window/size/viewport_width=800
