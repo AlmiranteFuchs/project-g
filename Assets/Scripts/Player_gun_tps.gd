@@ -14,6 +14,8 @@ extends CharacterBody3D
 @onready var ray_2 = $ray2
 @onready var ray_03 = $ray_03
 @onready var endray_2 = $ray2/endray2
+@onready var aim_cast = $p_head2/Camera3D/AimCast
+
 
 
 
@@ -29,6 +31,8 @@ const WALL_RUN_ANGLE = 2
 var camera_anglev = 0
 var collisions = []
 var onledge = false
+var iswallriding = false
+var damage = 100
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -39,14 +43,20 @@ func _ready():
 
 func _physics_process(delta):
 	if Input.is_action_pressed("shoot"):
-		if !m_16.is_playing():
-			m_16.play("Shoot")
+			if !m_16.is_playing():
+				m_16.play("Shoot")
+			if aim_cast.is_colliding():
+				var target = aim_cast.get_collider()
+				if target != null and target.is_in_group("Enemy"):
+					print("hit enemy")
+					target.health -= 100
 	manage_movement(delta)
 	#wall_ray_cast()
 	climb_wall()
 	move_and_slide()
 	raycast_ledge(delta)
 	ray_teste()
+	wall_ride()
 
 func _input(event):
 	# Handle the mouse movement.
@@ -184,12 +194,25 @@ func climb_wall():
 func teleport():
 	print("passei aqui")
 	global_transform.origin = ray_03.get_collision_point()
+	
+
+func wall_ride():
+	if is_on_wall_only() and Input.is_action_pressed("teleporte"):
+		iswallriding = true
+		gravity = 1
+		velocity.y = 0
+		velocity.x = 0
+	else:
+		iswallriding = false
+		gravity = 9.8
 
 func raycast_ledge(delta):
+	#print(velocity.x)
 	if ray_2.is_colliding() and !ray_1.is_colliding():
 		onledge = true
-		print(onledge)
+		#print(onledge)
 		ray_03.enabled = true
+		print("to aqui")
 	if(onledge):
 		if Input.is_action_just_pressed("teleporte"): #and !is_on_floor():
 			teleport()

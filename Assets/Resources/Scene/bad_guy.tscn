@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://30faeqtwg8s5"]
+
+[ext_resource type="Script" path="res://Assets/Resources/Scene/bad_guy.gd" id="1_fbpfo"]
+[ext_resource type="Texture2D" uid="uid://c2ksuxmvgwel6" path="res://icon.svg" id="2_kw85l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k8mdi"]
+albedo_texture = ExtResource("2_kw85l")
+
+[sub_resource type="SphereMesh" id="SphereMesh_cuhb5"]
+material = SubResource("StandardMaterial3D_k8mdi")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ybm5p"]
+
+[node name="BadGuy" type="CharacterBody3D" groups=["Enemy"]]
+script = ExtResource("1_fbpfo")
+
+[node name="BadGuyMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32072, 0)
+mesh = SubResource("SphereMesh_cuhb5")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32072, 0)
+shape = SubResource("SphereShape3D_ybm5p")

@@ -10,7 +10,10 @@ extends CharacterBody3D
 @onready var p_legs = $p_legs2
 @onready var m_16 = $p_head2/Camera3D/M16/AnimationPlayer
 @onready var ray_1 = $ray1
+@onready var endray_1 = $ray1/endray1
 @onready var ray_2 = $ray2
+@onready var ray_03 = $ray_03
+@onready var endray_2 = $ray2/endray2
 
 
 
@@ -25,6 +28,8 @@ const WALL_RUN_ANGLE = 2
 ##### Global Variables #####
 var camera_anglev = 0
 var collisions = []
+var onledge = false
+var iswallriding = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -41,6 +46,9 @@ func _physics_process(delta):
 	#wall_ray_cast()
 	climb_wall()
 	move_and_slide()
+	raycast_ledge(delta)
+	ray_teste()
+	wall_ride()
 
 func _input(event):
 	# Handle the mouse movement.
@@ -66,6 +74,7 @@ func manage_movement(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+
 	else:
 		# Handle jump.
 		if Input.is_action_just_pressed("ui_character_movement_up") and is_on_floor():
@@ -125,7 +134,7 @@ func climb_wall():
 	# if not is_on_wall():
 	# 	return
 	var space = get_world_3d().direct_space_state
-	print(space)
+
 
 
 	# TODO: Save collisions points in a array, reverse it, if collided with the wall, take the first point and compare the z of the next, while it is the same do nothing
@@ -144,11 +153,11 @@ func climb_wall():
 		var ray_parameters = PhysicsRayQueryParameters3D.create(starting_pos, ending_end)
 		var collision = space.intersect_ray(ray_parameters)
 
-		if Input.is_action_just_pressed("teleporte"):
-			teleport_player(ending_end)
+		#if Input.is_action_just_pressed("teleporte"):
+			#teleport_player(ending_end)
 		
 
-		line(starting_pos, ending_end, Color.RED, 1)
+		#line(starting_pos, ending_end, Color.RED, 1)
 		
 	
 
@@ -173,6 +182,54 @@ func climb_wall():
 	# print("obj> ", obj_y_pos)
 	# print("player> ", player_y_pos)
 	# print("on> ", colll)
+
+func teleport():
+	#print("passei aqui")
+	global_transform.origin = ray_03.get_collision_point()
+	
+
+func wall_ride():
+	if is_on_wall_only() and Input.is_action_pressed("teleporte"):
+		iswallriding = true
+		gravity = 1
+		velocity.y = 0
+		velocity.x = 0
+	else:
+		iswallriding = false
+		gravity = 9.8
+
+func raycast_ledge(delta):
+	#print(velocity.x)
+	if ray_2.is_colliding() and !ray_1.is_colliding():
+		onledge = true
+		#print(onledge)
+		ray_03.enabled = true
+	if(onledge):
+		if Input.is_action_just_pressed("teleporte"): #and !is_on_floor():
+			teleport()
+			onledge = false
+			
+		
+	else:
+		pass
+
+
+func ray_teste():
+	#DrawLine3d.DrawRay(ray_1)
+	var origin1 = ray_1.global_transform.origin
+	var origin2 = ray_2.global_transform.origin
+	var end1 = endray_1.global_position
+	var end2 = endray_2.global_position
+	var collision1 = ray_1.get_collision_point()
+	var collision2 = ray_2.get_collision_point()
+	if ray_1.is_colliding() == false:
+		DrawLine3d.DrawLine(origin1,end1,Color.RED)
+	else:
+		DrawLine3d.DrawLine(origin1,collision1,Color.GREEN)
+	if ray_2.is_colliding() == false:
+		DrawLine3d.DrawLine(origin2,end2,Color.RED)
+	else:
+		DrawLine3d.DrawLine(origin2,collision2,Color.GREEN)
 
 func turn_camera(event):
 	# Rotate the camera.

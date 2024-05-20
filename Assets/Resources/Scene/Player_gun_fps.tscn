@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b547qjke72088"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Player_gun.gd" id="1_siuad"]
+[ext_resource type="Script" path="res://Assets/Scripts/Player_gun_tps.gd" id="1_g5tsd"]
 [ext_resource type="PackedScene" uid="uid://byolkaspshoo7" path="res://Assets/Weapons/M16.tscn" id="2_c7kvv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mn4mv"]
@@ -10,7 +10,7 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00131845, 0.13223, -0.00134087)
-script = ExtResource("1_siuad")
+script = ExtResource("1_g5tsd")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00013, 0)
@@ -30,17 +30,29 @@ fov = 70.0
 [node name="M16" parent="p_head2/Camera3D" instance=ExtResource("2_c7kvv")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.454609, -0.421884, -1.39252)
 
+[node name="AimCast" type="RayCast3D" parent="p_head2/Camera3D"]
+target_position = Vector3(0, 0, -1000)
+
 [node name="p_chest2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3109, 0)
 
 [node name="p_legs2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.355619, 0)
 
-[node name="ray1" type="RayCast3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 2.59664, 0)
-collide_with_areas = true
-
 [node name="ray2" type="RayCast3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 1.99697, 0)
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 1.04283, 0)
+
+[node name="endray2" type="Node3D" parent="ray2"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, -1.00234, -0.000752032)
+
+[node name="ray1" type="RayCast3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, -4.77303e-09, 2.0024, 3.95812e-09)
+
+[node name="endray1" type="Node3D" parent="ray1"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, -1.00394, -0.000533819)
+
+[node name="ray_03" type="RayCast3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.25411, -1.12223)
+enabled = false
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

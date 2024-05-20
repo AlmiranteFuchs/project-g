@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbuwmo08sqbid"]
+[gd_scene load_steps=9 format=3 uid="uid://cbuwmo08sqbid"]
 
-[ext_resource type="PackedScene" uid="uid://b4xk7xxtdwrcf" path="res://Assets/Resources/Scene/Player_gun_tps.tscn" id="1_xaleg"]
+[ext_resource type="PackedScene" uid="uid://b547qjke72088" path="res://Assets/Resources/Scene/Player_gun_fps.tscn" id="1_yb210"]
+[ext_resource type="PackedScene" uid="uid://30faeqtwg8s5" path="res://Assets/Resources/Scene/bad_guy.tscn" id="2_wqg3q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fyoi8"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -75,4 +76,7 @@ transform = Transform3D(-9.91529, 0, 2.98994e-06, 0, 10.0601, 0, -8.66822e-07, 0
 use_collision = true
 material = SubResource("StandardMaterial3D_01dge")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_xaleg")]
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_yb210")]
+
+[node name="BadGuy" parent="." instance=ExtResource("2_wqg3q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133101, 1.86125, -9.374)
